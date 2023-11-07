@@ -1,6 +1,6 @@
 import { addContact, deleteContact } from 'Redux/PhoneBook/phoneBookSlice';
 import { selectContacts, selectFilter } from 'Redux/PhoneBook/selectors';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { setFilter } from 'Redux/filterSlice';
@@ -13,11 +13,16 @@ import { BookUser, Phone } from 'lucide-react';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
+import { fetchDataThunk } from 'Redux/PhoneBook/operations';
 
 export const PhoneBook = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
+
+  useEffect(() => {
+    dispatch(fetchDataThunk('contacts'));
+  }, [dispatch]);
 
   const handleContactDelete = id => {
     dispatch(deleteContact(id));
