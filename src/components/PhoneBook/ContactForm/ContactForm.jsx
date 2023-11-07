@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'Redux/PhoneBook/phoneBookSlice';
 import { selectContacts } from 'Redux/PhoneBook/selectors';
 import { nanoid } from '@reduxjs/toolkit';
+import { addContactThunk } from 'Redux/PhoneBook/operations';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -21,7 +22,8 @@ const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const handleNewContacts = () => {
+  const handleNewContacts = ({ name, number }) => {
+    dispatch(addContactThunk(name, number));
     if (isNameValid && isNumberValid) {
       if (contacts.some(contact => contact.name === name)) {
         toast.info('Sorry, you already have this name in the phonebook. 😅');
