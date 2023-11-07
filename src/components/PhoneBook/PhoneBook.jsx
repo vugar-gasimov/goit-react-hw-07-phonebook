@@ -62,6 +62,7 @@ export const PhoneBook = () => {
           isNumberExists={isNumberExists}
         />
       </PhoneBookContainer>
+
       <PhoneBookContainer>
         <PhoneBookContactTitle>
           Contacts <BookUser strokeWidth={1.5} />
