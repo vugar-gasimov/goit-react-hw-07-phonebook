@@ -7,9 +7,11 @@ import {
 } from '../PhoneBookStyled';
 import { selectFilter } from 'Redux/PhoneBook/selectors';
 import { setFilter } from 'Redux/filterSlice';
+
 const Filter = () => {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
+
   const handleFilterInput = e => {
     dispatch(setFilter(e.target.value));
   };
@@ -27,4 +29,5 @@ const Filter = () => {
     </PhoneBookInputContainer>
   );
 };
+
 export default Filter;

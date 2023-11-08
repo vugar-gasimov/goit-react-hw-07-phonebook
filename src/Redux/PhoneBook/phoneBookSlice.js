@@ -10,8 +10,8 @@ const initialState = {
     items: [],
     loading: false,
     error: null,
-    deletedId: null,
   },
+  deletedId: null,
 };
 
 export const phoneBookSlice = createSlice({
@@ -27,32 +27,25 @@ export const phoneBookSlice = createSlice({
     builder
       .addCase(fetchDataThunk.fulfilled, (state, { payload }) => {
         state.contacts.items = payload;
+        state.contacts.loading = false;
       })
       .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items = state.contacts.items.filter(
           item => item.id !== payload.id
         );
+        state.contacts.loading = false;
       })
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items.push(payload);
+        state.contacts.loading = false;
       })
-      .addMatcher(
-        isAnyOf(
-          deleteContactThunk.fulfilled,
-          fetchDataThunk.fulfilled,
-          addContactThunk.fulfilled
-        ),
-        (state, { payload }) => {
-          state.contacts.loading = false;
-        }
-      )
       .addMatcher(
         isAnyOf(
           deleteContactThunk.pending,
           fetchDataThunk.pending,
           addContactThunk.pending
         ),
-        (state, { payload }) => {
+        state => {
           state.contacts.loading = true;
           state.contacts.error = null;
         }

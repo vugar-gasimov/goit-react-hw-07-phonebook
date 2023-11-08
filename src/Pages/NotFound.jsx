@@ -7,14 +7,15 @@ import { ArrowLeft } from 'lucide-react';
 const NotFound = () => {
   const location = useLocation();
   const goBackRef = useRef(location.state?.from || '/');
+
   return (
     <Wrapper>
       <Content>
-        <h1>Oops! Something went wrong</h1>
+        <h1>Oops! 404 Not Found</h1>
         <h2>
-          You can go <LinkStyled to="/"> Home </LinkStyled> or back{' '}
+          You can go <LinkStyled to="/">Home</LinkStyled> or back{' '}
           <LinkStyled to={goBackRef.current}>
-            <ArrowLeft size={28} strokeWidth={2.5} />{' '}
+            <ArrowLeft size={28} strokeWidth={2.5} />
           </LinkStyled>
         </h2>
       </Content>

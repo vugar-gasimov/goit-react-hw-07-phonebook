@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { selectContacts } from 'Redux/PhoneBook/selectors';
+import { nanoid } from '@reduxjs/toolkit';
+import { addContactThunk } from 'Redux/PhoneBook/operations';
 import {
   PhoneBookInputContainer,
   PhoneBookInputLabel,
@@ -6,12 +11,6 @@ import {
   PhoneBookButton,
   PhoneBookHint,
 } from '../PhoneBookStyled';
-import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { selectContacts } from 'Redux/PhoneBook/selectors';
-import { nanoid } from '@reduxjs/toolkit';
-import { addContactThunk } from 'Redux/PhoneBook/operations';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -24,21 +23,14 @@ const ContactForm = () => {
   const handleNewContacts = () => {
     if (isNameValid && isNumberValid) {
       if (contacts.some(contact => contact.name === name)) {
-        toast.info('Sorry, you already have this name in the phonebook. 😅');
+        toast.info('This name already exists in the phonebook. 😅');
       } else if (contacts.some(contact => contact.number === number)) {
-        toast.info('Sorry, you already have this number in the phonebook. 😉');
+        toast.info('This number already exists in the phonebook. 😉');
       } else {
-        const newContact = {
-          id: nanoid(),
-          name,
-          number,
-        };
+        const newContact = { id: nanoid(), name, number };
         dispatch(addContactThunk(newContact));
-        setName('');
-        setNumber('');
-        setIsNameValid(false);
-        setIsNumberValid(false);
-        toast.success('You have added a new contact');
+        clearForm();
+        toast.success('New contact added');
       }
     } else {
       if (!isNameValid) {
@@ -48,6 +40,13 @@ const ContactForm = () => {
         toast.error('Please enter a valid phone number');
       }
     }
+  };
+
+  const clearForm = () => {
+    setName('');
+    setNumber('');
+    setIsNameValid(false);
+    setIsNumberValid(false);
   };
 
   const handleNewName = e => {

@@ -1,23 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   PhoneBookInputContainer,
   PhoneBookContactList,
   LoadingWrapper,
 } from '../PhoneBookStyled';
-
-import { useSelector } from 'react-redux';
 import {
   selectContacts,
   selectFilter,
   selectLoading,
 } from 'Redux/PhoneBook/selectors';
-
 import { ContactListItem } from './ContactListItem';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
-
   const loading = useSelector(selectLoading);
 
   const getFilteredData = () => {

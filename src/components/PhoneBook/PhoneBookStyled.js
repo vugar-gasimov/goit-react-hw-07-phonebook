@@ -21,11 +21,6 @@ export const LoadingWrapper = styled.div`
   right: 0px;
 `;
 
-export const PhoneBookHint = styled.p`
-  color: #ff0000;
-  font-size: 14px;
-`;
-
 export const AppContainer = styled.div`
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -68,13 +63,6 @@ export const PhoneBookContainer = styled.div`
   );
 `;
 
-export const PhoneBookTitle = styled.h1`
-  font-size: 24px;
-  color: #333;
-  margin: 0;
-  margin-bottom: 16px;
-`;
-
 export const PhoneBookInputContainer = styled.div`
   display: flex;
   margin-top: 10px;
@@ -83,13 +71,38 @@ export const PhoneBookInputContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const PhoneBookInputLabel = styled.p`
+export const ListItemContainer = styled.div`
   display: flex;
-  flex: 1;
-  font-size: 18px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  gap: 10px;
+  background: linear-gradient(
+    315deg,
+    rgba(255, 159, 14, 0.6),
+    rgba(228, 64, 187, 0.6),
+    rgba(101, 90, 220, 0.6),
+    rgba(72, 140, 251, 0.6),
+    rgba(72, 140, 251, 0.6),
+    rgba(41, 219, 188, 0.6),
+    rgba(221, 245, 5, 0.6)
+  );
+`;
+
+export const PhoneBookTitle = styled.h1`
+  font-size: 24px;
   color: #333;
   margin: 0;
-  margin-top: 8px;
+  margin-bottom: 16px;
+`;
+export const PhoneBookContactTitle = styled.h2`
+  font-size: 24px;
+  color: #333;
+  margin: 0;
 `;
 
 export const PhoneBookInput = styled.input`
@@ -105,6 +118,19 @@ export const PhoneBookInput = styled.input`
     rgba(3, 169, 244, 0.8),
     rgba(200, 80, 192, 0.8) 70%
   );
+`;
+
+export const PhoneBookContactList = styled.ul`
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 0;
+`;
+
+export const PhoneBookContactItem = styled.li`
+  font-size: 16px;
+  margin: 8px 0;
 `;
 
 export const PhoneBookButton = styled.button`
@@ -174,47 +200,6 @@ export const PhoneBookButton = styled.button`
   &:hover:enabled {
     background-color: rgba(0, 100, 204, 0.7);
   }
-`;
-
-export const PhoneBookContactList = styled.ul`
-  list-style: none;
-  padding: 0;
-  max-height: 300px;
-  overflow-y: auto;
-`;
-
-export const PhoneBookContactItem = styled.li`
-  font-size: 16px;
-  margin: 8px 0;
-`;
-
-export const PhoneBookContactTitle = styled.h2`
-  font-size: 24px;
-  color: #333;
-  margin: 0;
-  margin-bottom: 16px;
-`;
-
-export const ListItemContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  background-color: #fff;
-  gap: 10px;
-  background: linear-gradient(
-    315deg,
-    rgba(255, 159, 14, 0.6),
-    rgba(228, 64, 187, 0.6),
-    rgba(101, 90, 220, 0.6),
-    rgba(72, 140, 251, 0.6),
-    rgba(72, 140, 251, 0.6),
-    rgba(41, 219, 188, 0.6),
-    rgba(221, 245, 5, 0.6)
-  );
 `;
 
 export const DeleteButton = styled.button`
@@ -290,4 +275,18 @@ export const DeleteButton = styled.button`
     background-color: #0056b3;
   }
 `;
-// ====================================================
+
+export const PhoneBookHint = styled.p`
+  color: #ffd700;
+  font-size: 14px;
+  margin: 0;
+`;
+
+export const PhoneBookInputLabel = styled.p`
+  display: flex;
+  flex: 1;
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+  margin-top: 8px;
+`;
