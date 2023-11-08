@@ -6,6 +6,17 @@ const rotateHue = keyframes`
   }
 `;
 
+export const lightUp = keyframes`
+  0% { color: #FFF; } /* Initial color */
+  50% { color: #FFD700; } /* Light up color */
+  100% { color: #FFF; } /* Back to initial color */
+`;
+
+export const flicker = keyframes`
+  0%, 80%, 100% { opacity: 1; } /* Lamp on */
+  90% { opacity: 0; } /* Lamp off */
+`;
+
 export const LoadingWrapper = styled.div`
   justify-content: center;
   display: flex;
@@ -95,14 +106,15 @@ export const ListItemContainer = styled.div`
 
 export const PhoneBookTitle = styled.h1`
   font-size: 24px;
-  color: #333;
   margin: 0;
-  margin-bottom: 16px;
+  color: ${props => (props.active ? '#FFF' : '#000')};
+  text-shadow: 0 0 3px ${props => (props.active ? '#FFF' : 'none')};
 `;
 export const PhoneBookContactTitle = styled.h2`
   font-size: 24px;
-  color: #333;
   margin: 0;
+  color: #fff;
+  text-shadow: 0 0 3px white;
 `;
 
 export const PhoneBookInput = styled.input`

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFilteredData,
@@ -34,11 +34,19 @@ export const PhoneBook = () => {
   const handleFilterChange = value => {
     dispatch(setFilter(value));
   };
+  const [lampActive, setLampActive] = useState(true);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLampActive(!lampActive);
+    }, 4000); // Change lamp state every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [lampActive]);
   return (
     <div>
       <PhoneBookContainer>
-        <PhoneBookTitle>
+        <PhoneBookTitle active={lampActive}>
           PhoneBook <Phone strokeWidth={1.5} />
         </PhoneBookTitle>
         <ContactForm
