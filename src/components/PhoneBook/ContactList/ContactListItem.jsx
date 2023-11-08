@@ -17,7 +17,7 @@ export function ContactListItem({ contact }) {
     <ListItemContainer>
       {contact.name}: {contact.number}
       {loading && curId === contact.id ? (
-        <DeleteButton>Loading</DeleteButton>
+        <DeleteButton disabled>Loading</DeleteButton>
       ) : (
         <DeleteButton onClick={() => dispatch(deleteContactThunk(contact.id))}>
           Delete

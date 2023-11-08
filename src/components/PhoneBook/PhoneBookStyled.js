@@ -10,6 +10,15 @@ export const LoadingWrapper = styled.div`
   justify-content: center;
   display: flex;
   align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Center the content horizontally and vertically */
+
+  /* Position the LoadingWrapper 50px from the top and 50px from the right */
+  position: absolute;
+  top: 120px;
+  right: 0px;
 `;
 
 export const PhoneBookHint = styled.p`

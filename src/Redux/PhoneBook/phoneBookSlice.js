@@ -10,8 +10,8 @@ const initialState = {
     items: [],
     loading: false,
     error: null,
+    deletedId: null,
   },
-  deletedId: null,
 };
 
 export const phoneBookSlice = createSlice({
