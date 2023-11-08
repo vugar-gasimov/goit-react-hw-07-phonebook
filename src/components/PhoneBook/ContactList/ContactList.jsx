@@ -2,6 +2,7 @@ import React from 'react';
 import {
   PhoneBookInputContainer,
   PhoneBookContactList,
+  LoadingWrapper,
 } from '../PhoneBookStyled';
 
 import { useSelector } from 'react-redux';
@@ -34,7 +35,11 @@ const ContactList = () => {
   return (
     <PhoneBookInputContainer>
       Contact List
-      {loading && <h1>Loading...</h1>}
+      {loading && (
+        <LoadingWrapper>
+          <div className="loader"></div>
+        </LoadingWrapper>
+      )}
       <PhoneBookContactList>
         {filteredData.map(contact => (
           <ContactListItem contact={contact} key={contact.id} />

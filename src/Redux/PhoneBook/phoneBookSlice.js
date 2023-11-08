@@ -7,9 +7,7 @@ import {
 
 const initialState = {
   contacts: {
-    items: [
-      // { id: 'id-1', name: 'Vugar Gasimov', number: '684-02-29' },
-    ],
+    items: [],
     loading: false,
     error: null,
   },

@@ -6,6 +6,12 @@ const rotateHue = keyframes`
   }
 `;
 
+export const LoadingWrapper = styled.div`
+  justify-content: center;
+  display: flex;
+  align-items: center;
+`;
+
 export const PhoneBookHint = styled.p`
   color: #ff0000;
   font-size: 14px;
