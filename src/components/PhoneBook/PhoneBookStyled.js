@@ -164,6 +164,8 @@ export const PhoneBookButton = styled.button`
 export const PhoneBookContactList = styled.ul`
   list-style: none;
   padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
 `;
 
 export const PhoneBookContactItem = styled.li`

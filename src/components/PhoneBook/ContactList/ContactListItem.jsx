@@ -1,13 +1,21 @@
 import React from 'react';
-import { PhoneBookContactItem } from '../PhoneBookStyled';
+import { ListItemContainer, DeleteButton } from '../PhoneBookStyled';
+
+import { useDispatch } from 'react-redux';
+import { deleteContactThunk } from 'Redux/PhoneBook/operations';
 
 export function ContactListItem({ contact }) {
+  const dispatch = useDispatch();
   if (!contact) {
     return null;
   }
+
   return (
-    <PhoneBookContactItem>
+    <ListItemContainer>
       {contact.name}: {contact.number}
-    </PhoneBookContactItem>
+      <DeleteButton onClick={() => dispatch(deleteContactThunk(contact.id))}>
+        Delete
+      </DeleteButton>
+    </ListItemContainer>
   );
 }

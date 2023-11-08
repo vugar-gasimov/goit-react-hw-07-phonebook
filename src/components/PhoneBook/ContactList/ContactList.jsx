@@ -2,37 +2,30 @@ import React from 'react';
 import {
   PhoneBookInputContainer,
   PhoneBookContactList,
-  ListItemContainer,
-  DeleteButton,
 } from '../PhoneBookStyled';
 
-import { ContactListItem } from './ContactListItem';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   selectContacts,
   selectFilter,
   selectLoading,
 } from 'Redux/PhoneBook/selectors';
-import { toast } from 'react-toastify';
-import { deleteContactThunk } from 'Redux/PhoneBook/operations';
+
+import { ContactListItem } from './ContactListItem';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
-  const dispatch = useDispatch();
-  const loading = useSelector(selectLoading);
 
-  const handleDeleteContact = id => {
-    dispatch(deleteContactThunk(id));
-    toast.info('You have deleted a contact');
-  };
+  const loading = useSelector(selectLoading);
 
   const getFilteredData = () => {
     return contacts.filter(
       contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase().trim()) ||
-        contact.number.includes(filter.trim())
+        (contact.name &&
+          filter &&
+          contact.name.toLowerCase().includes(filter.toLowerCase().trim())) ||
+        (contact.number && contact.number.includes(filter.trim()))
     );
   };
 
@@ -44,14 +37,7 @@ const ContactList = () => {
       {loading && <h1>Loading...</h1>}
       <PhoneBookContactList>
         {filteredData.map(contact => (
-          <ListItemContainer key={contact.id}>
-            <ContactListItem contact={contact} />
-            <DeleteButton
-              onClick={() => dispatch(handleDeleteContact(contact.id))}
-            >
-              Delete
-            </DeleteButton>
-          </ListItemContainer>
+          <ContactListItem contact={contact} key={contact.id} />
         ))}
       </PhoneBookContactList>
     </PhoneBookInputContainer>

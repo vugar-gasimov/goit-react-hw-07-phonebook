@@ -1,14 +1,18 @@
-import { addContact, deleteContact } from 'Redux/PhoneBook/phoneBookSlice';
-import { selectContacts, selectFilter } from 'Redux/PhoneBook/selectors';
+import {
+  selectFilteredData,
+  selectFilter,
+  selectContacts,
+} from 'Redux/PhoneBook/selectors';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+
 import { setFilter } from 'Redux/filterSlice';
 import {
   PhoneBookContactTitle,
   PhoneBookContainer,
   PhoneBookTitle,
 } from './PhoneBookStyled';
+
 import { BookUser, Phone } from 'lucide-react';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
@@ -19,35 +23,19 @@ export const PhoneBook = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
+  const filteredData = useSelector(selectFilteredData);
 
   useEffect(() => {
     dispatch(fetchDataThunk('contacts'));
   }, [dispatch]);
 
-  const handleContactDelete = id => {
-    dispatch(deleteContact(id));
-    toast.info('You have deleted a contact');
-  };
-
   const handleFilterChange = value => {
     dispatch(setFilter(value));
   };
 
-  const filteredData = contacts.filter(
-    item =>
-      item.name &&
-      filter &&
-      item.name.toLowerCase().includes(filter.toLowerCase().trim())
-  );
-
   const isNameExists = name => contacts.some(contact => contact.name === name);
   const isNumberExists = number =>
     contacts.some(contact => contact.phoneNumber === number);
-
-  const onSubmit = data => {
-    dispatch(addContact(data));
-    toast.success('You have added a new contact');
-  };
 
   return (
     <div>
@@ -57,7 +45,6 @@ export const PhoneBook = () => {
         </PhoneBookTitle>
 
         <ContactForm
-          onSubmit={onSubmit}
           isNameExists={isNameExists}
           isNumberExists={isNumberExists}
         />
@@ -70,11 +57,7 @@ export const PhoneBook = () => {
 
         <Filter setFilter={handleFilterChange} filter={filter} />
 
-        <ContactList
-          contacts={filteredData}
-          filter={filter}
-          onDeleteContact={handleContactDelete}
-        />
+        <ContactList contacts={filteredData} filter={filter} />
       </PhoneBookContainer>
     </div>
   );

@@ -6,41 +6,37 @@ import {
 } from './operations';
 
 const initialState = {
-  contacts: [
-    // { id: 'id-1', name: 'Vugar Gasimov', number: '684-02-29' },
-  ],
-  loading: false,
-  error: null,
+  contacts: {
+    items: [
+      // { id: 'id-1', name: 'Vugar Gasimov', number: '684-02-29' },
+    ],
+    loading: false,
+    error: null,
+  },
+  deletedId: null,
 };
 
 export const phoneBookSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    addContact: (state, { payload }) => {
-      state.contacts.push(payload);
+    setCurrentId: (state, { payload }) => {
+      state.deletedId = payload;
     },
-  },
-
-  editContact: (state, { payload }) => {
-    const index = state.contacts.find(contact => contact.id === payload.id);
-    index.contact = payload.text;
-  },
-  deleteContact: (state, { payload }) => {
-    const index = state.contacts.findIndex(contact => contact.id === payload);
-    state.contacts.splice(index, 1);
   },
 
   extraReducers: builder => {
     builder
       .addCase(fetchDataThunk.fulfilled, (state, { payload }) => {
-        state.contacts = payload;
+        state.contacts.items = payload;
       })
       .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
-        state.contacts = state.contacts.filter(item => item.id !== payload.id);
+        state.contacts.items = state.contacts.items.filter(
+          item => item.id !== payload.id
+        );
       })
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
-        state.contacts.push(payload);
+        state.contacts.items.push(payload);
       })
       .addMatcher(
         isAnyOf(
@@ -49,7 +45,7 @@ export const phoneBookSlice = createSlice({
           addContactThunk.fulfilled
         ),
         (state, { payload }) => {
-          state.loading = false;
+          state.contacts.loading = false;
         }
       )
       .addMatcher(
@@ -59,8 +55,8 @@ export const phoneBookSlice = createSlice({
           addContactThunk.pending
         ),
         (state, { payload }) => {
-          state.loading = true;
-          state.error = null;
+          state.contacts.loading = true;
+          state.contacts.error = null;
         }
       )
       .addMatcher(
@@ -70,13 +66,12 @@ export const phoneBookSlice = createSlice({
           addContactThunk.rejected
         ),
         (state, { payload }) => {
-          state.loading = false;
-          state.error = payload;
+          state.contacts.loading = false;
+          state.contacts.error = payload;
         }
       );
   },
 });
 
-export const { editContact, addContact, deleteContact } =
-  phoneBookSlice.actions;
+export const { setCurrentId } = phoneBookSlice.actions;
 export const phoneBookReducer = phoneBookSlice.reducer;
