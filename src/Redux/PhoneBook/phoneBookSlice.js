@@ -34,6 +34,7 @@ export const phoneBookSlice = createSlice({
         state.contacts.items = payload;
         state.contacts.loading = false;
       })
+
       .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items = state.contacts.items.filter(
           item => item.id !== payload.id

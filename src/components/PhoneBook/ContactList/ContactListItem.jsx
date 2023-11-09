@@ -66,13 +66,20 @@ export function ContactListItem({ contact }) {
         {isOpen ? (
           <Modal close={closeModal}>
             <form onSubmit={handleChangeContact} onKeyPress={handleKeyPress}>
-              <ModalText>Name</ModalText>
+              <img
+                alt={contact.name}
+                src={contact.image}
+                width={100}
+                height={100}
+              />
+              <hr />
+              <ModalText>Name:</ModalText>
               <ModalInput
                 type="text"
                 value={updatedName}
                 onChange={e => setUpdatedName(e.target.value)}
               />
-              <ModalText>Number</ModalText>
+              <ModalText>Number:</ModalText>
               <ModalInput
                 type="tel"
                 value={updatedNumber}

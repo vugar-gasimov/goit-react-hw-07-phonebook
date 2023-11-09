@@ -134,6 +134,7 @@ export const ModalInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
+  min-width: -webkit-fill-available;
   background: linear-gradient(
     43deg,
     rgba(255, 0, 88, 0.8),
@@ -301,6 +302,7 @@ export const DeleteButton = styled.button`
 `;
 
 export const ModalSubmit = styled.button`
+  margin-top: 10px;
   --border-radius: 4px;
   --border-width: 4px;
   appearance: none;
