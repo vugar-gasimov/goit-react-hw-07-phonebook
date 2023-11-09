@@ -50,7 +50,7 @@ export const PhoneBookMainContainer = styled.div`
   align-items: flex-start;
 
   @media (min-width: 1000px) {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
   }
