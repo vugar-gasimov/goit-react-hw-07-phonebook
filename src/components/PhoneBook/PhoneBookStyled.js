@@ -46,9 +46,16 @@ export const ContentContainer = styled.div`
 `;
 export const PhoneBookMainContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
+
 export const PhoneBookContainer = styled.div`
   font-family: Arial, sans-serif;
   max-width: 400px;
