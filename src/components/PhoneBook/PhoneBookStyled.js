@@ -127,6 +127,23 @@ export const PhoneBookInput = styled.input`
   );
 `;
 
+export const ModalInput = styled.input`
+  flex: 3;
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  background: linear-gradient(
+    43deg,
+    rgba(255, 0, 88, 0.8),
+    rgba(3, 169, 244, 0.8),
+    rgba(200, 80, 192, 0.8) 70%
+  );
+  position: relative;
+  z-index: 103;
+`;
+
 export const PhoneBookContactList = styled.ul`
   list-style: none;
   padding: 0;
@@ -283,6 +300,81 @@ export const DeleteButton = styled.button`
   }
 `;
 
+export const ModalSubmit = styled.button`
+  --border-radius: 4px;
+  --border-width: 4px;
+  appearance: none;
+  position: relative;
+  z-index: 2;
+  left: 220px;
+  &::after {
+    --m-i: linear-gradient(#000, #000);
+    --m-o: content-box, padding-box;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: var(--border-width);
+    border-radius: var(--border-radius);
+    background-image: conic-gradient(
+      rgba(72, 140, 251, 1),
+      rgba(41, 219, 188, 1),
+      rgba(221, 245, 5, 1),
+      rgba(255, 159, 14, 1),
+      rgba(228, 64, 187, 1),
+      rgba(101, 90, 220, 1),
+      rgba(72, 140, 251, 1)
+    );
+    -webkit-mask-image: var(--m-i), var(--m-i);
+    mask-image: var(--m-i), var(--m-i);
+    -webkit-mask-origin: var(--m-o);
+    mask-origin: var(--m-o);
+    -webkit-mask-clip: var(--m-o);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    filter: hue-rotate(0);
+    animation: ${rotateHue} linear 1000ms infinite;
+    animation-play-state: running;
+  }
+
+  &,
+  &::after {
+    box-sizing: border-box;
+  }
+
+  &:active {
+    --border-width: 5px;
+  }
+
+  width: fit-content;
+  background-color: #007bff;
+
+  transition: background-color 0.3s;
+
+  &:disabled {
+    background-color: rgba(0, 123, 255, 0.5);
+    cursor: not-allowed;
+  }
+
+  &:hover:enabled {
+    background-color: #0056b3;
+  }
+
+  background-color: rgba(0, 123, 255, 0.5);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
 export const PhoneBookHint = styled.p`
   color: #ffd700;
   font-size: 14px;
@@ -296,4 +388,8 @@ export const PhoneBookInputLabel = styled.p`
   color: #333;
   margin: 0;
   margin-top: 8px;
+`;
+
+export const ModalText = styled.p`
+  margin: 0;
 `;

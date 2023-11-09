@@ -5,6 +5,9 @@ import {
   ListItemContainer,
   DeleteButton,
   ButtonsContainer,
+  ModalInput,
+  ModalText,
+  ModalSubmit,
 } from '../PhoneBookStyled';
 import {
   deleteContactThunk,
@@ -63,18 +66,20 @@ export function ContactListItem({ contact }) {
         {isOpen ? (
           <Modal close={closeModal}>
             <form onSubmit={handleChangeContact} onKeyPress={handleKeyPress}>
-              <input
-                style={{ position: 'relative', zIndex: '200' }}
+              <ModalText>Name</ModalText>
+              <ModalInput
                 type="text"
                 value={updatedName}
                 onChange={e => setUpdatedName(e.target.value)}
               />
-              <input
+              <ModalText>Number</ModalText>
+              <ModalInput
                 type="tel"
                 value={updatedNumber}
                 onChange={e => setUpdatedNumber(e.target.value)}
               />
-              <DeleteButton type="submit">Submit</DeleteButton>
+              <br />
+              <ModalSubmit type="submit">Submit</ModalSubmit>
             </form>
           </Modal>
         ) : null}

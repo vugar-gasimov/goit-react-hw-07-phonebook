@@ -45,7 +45,12 @@ const Modal = ({ children, close }) => {
       <ModalContent>
         <>
           <ModalTitle>Contact</ModalTitle>
-          <img width={100} height={100} />
+          <img
+            // alt={contact.name}
+            // src={contact.image}
+            width={100}
+            height={100}
+          />
           <hr />
         </>
         <CloseButton onClick={close}>×</CloseButton>
