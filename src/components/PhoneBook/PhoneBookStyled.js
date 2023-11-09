@@ -6,17 +6,6 @@ const rotateHue = keyframes`
   }
 `;
 
-export const lightUp = keyframes`
-  0% { color: #FFF; } /* Initial color */
-  50% { color: #FFD700; } /* Light up color */
-  100% { color: #FFF; } /* Back to initial color */
-`;
-
-export const flicker = keyframes`
-  0%, 80%, 100% { opacity: 1; } /* Lamp on */
-  90% { opacity: 0; } /* Lamp off */
-`;
-
 export const LoadingWrapper = styled.div`
   justify-content: center;
   display: flex;
