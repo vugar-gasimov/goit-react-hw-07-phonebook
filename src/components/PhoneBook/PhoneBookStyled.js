@@ -93,6 +93,12 @@ export const ListItemContainer = styled.div`
   );
 `;
 
+export const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const PhoneBookTitle = styled.h1`
   font-size: 24px;
   margin: 0;
@@ -124,7 +130,7 @@ export const PhoneBookInput = styled.input`
 export const PhoneBookContactList = styled.ul`
   list-style: none;
   padding: 0;
-  max-height: 300px;
+  max-height: 200px;
   overflow-y: auto;
   margin: 0;
 `;

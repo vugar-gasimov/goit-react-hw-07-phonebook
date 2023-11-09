@@ -3,6 +3,7 @@ import {
   addContactThunk,
   deleteContactThunk,
   fetchDataThunk,
+  editContactThunk,
 } from './operations';
 
 const initialState = {
@@ -10,8 +11,9 @@ const initialState = {
     items: [],
     loading: false,
     error: null,
+    deletedId: null,
+    value: '',
   },
-  deletedId: null,
 };
 
 export const phoneBookSlice = createSlice({
@@ -19,7 +21,10 @@ export const phoneBookSlice = createSlice({
   initialState,
   reducers: {
     setCurrentId: (state, { payload }) => {
-      state.deletedId = payload;
+      state.contacts.deletedId = payload;
+    },
+    setValue: (state, { payload }) => {
+      state.contacts.value = payload;
     },
   },
 
@@ -38,6 +43,14 @@ export const phoneBookSlice = createSlice({
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items.push(payload);
         state.contacts.loading = false;
+      })
+      .addCase(editContactThunk.fulfilled, (state, { payload }) => {
+        const itemIndex = state.contacts.items.findIndex(
+          item => item.id === payload.id
+        );
+        if (itemIndex !== -1) {
+          state.contacts.items[itemIndex] = payload;
+        }
       })
       .addMatcher(
         isAnyOf(
@@ -64,5 +77,5 @@ export const phoneBookSlice = createSlice({
   },
 });
 
-export const { setCurrentId } = phoneBookSlice.actions;
+export const { setCurrentId, setValue } = phoneBookSlice.actions;
 export const phoneBookReducer = phoneBookSlice.reducer;

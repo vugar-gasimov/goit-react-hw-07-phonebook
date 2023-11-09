@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { ListItemContainer, DeleteButton } from '../PhoneBookStyled';
-import { deleteContactThunk } from 'Redux/PhoneBook/operations';
+import {
+  ListItemContainer,
+  DeleteButton,
+  ButtonsContainer,
+} from '../PhoneBookStyled';
+import {
+  deleteContactThunk,
+  editContactThunk,
+} from 'Redux/PhoneBook/operations';
 import {
   selectDeletedId,
   selectError,
@@ -21,6 +28,14 @@ export function ContactListItem({ contact }) {
     }
   }, [error, loading]);
 
+  const handleChangeContact = contactId => {
+    const updatedContact = {
+      id: contactId,
+      name: prompt('Enter new name') || contact.name,
+      number: prompt('Enter new number') || contact.number,
+    };
+    dispatch(editContactThunk(updatedContact));
+  };
   if (!contact) {
     return null;
   }
@@ -28,12 +43,17 @@ export function ContactListItem({ contact }) {
   return (
     <ListItemContainer>
       {contact.name}: {contact.number}
-      <DeleteButton
-        onClick={() => dispatch(deleteContactThunk(contact.id))}
-        disabled={loading && curId === contact.id}
-      >
-        {loading && curId === contact.id ? 'Deleting...' : 'Delete'}
-      </DeleteButton>
+      <ButtonsContainer>
+        <DeleteButton onClick={() => handleChangeContact(contact.id)}>
+          Edit
+        </DeleteButton>
+        <DeleteButton
+          onClick={() => dispatch(deleteContactThunk(contact.id))}
+          disabled={loading && curId === contact.id}
+        >
+          {loading && curId === contact.id ? 'Deleting...' : 'Delete'}
+        </DeleteButton>
+      </ButtonsContainer>
     </ListItemContainer>
   );
 }
