@@ -64,6 +64,7 @@ export function ContactListItem({ contact }) {
           <Modal close={closeModal}>
             <form onSubmit={handleChangeContact} onKeyPress={handleKeyPress}>
               <input
+                style={{ position: 'relative', zIndex: '200' }}
                 type="text"
                 value={updatedName}
                 onChange={e => setUpdatedName(e.target.value)}

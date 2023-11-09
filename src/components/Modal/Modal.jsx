@@ -3,7 +3,12 @@ import { useCallback, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
-import { CloseButton, ModalContent, ModalWrapper } from './Modal.Styled';
+import {
+  CloseButton,
+  ModalContent,
+  ModalTitle,
+  ModalWrapper,
+} from './Modal.Styled';
 
 const rootModal = document.querySelector('#modal');
 
@@ -39,7 +44,8 @@ const Modal = ({ children, close }) => {
     <ModalWrapper onClick={handleClickOutside}>
       <ModalContent>
         <>
-          <h1>Modal</h1>
+          <ModalTitle>Contact</ModalTitle>
+          <img width={100} height={100} />
           <hr />
         </>
         <CloseButton onClick={close}>×</CloseButton>
