@@ -44,10 +44,33 @@ export const ContentContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 `;
-
+export const PhoneBookMainContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 export const PhoneBookContainer = styled.div`
   font-family: Arial, sans-serif;
   max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: rgba(65, 88, 208, 0.5);
+  background: linear-gradient(
+    43deg,
+    rgba(65, 88, 208, 0.7) 0%,
+    rgba(200, 80, 192, 0.8) 46%,
+    rgba(255, 204, 112, 0.7) 100%
+  );
+`;
+
+export const PhoneBookContactsContainer = styled.div`
+  font-family: Arial, sans-serif;
+  min-width: 300px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
 
@@ -148,7 +171,7 @@ export const ModalInput = styled.input`
 export const PhoneBookContactList = styled.ul`
   list-style: none;
   padding: 0;
-  max-height: 200px;
+  max-height: 400px;
   overflow-y: auto;
   margin: 0;
 `;

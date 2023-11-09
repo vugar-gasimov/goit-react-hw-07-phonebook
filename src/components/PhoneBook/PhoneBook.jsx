@@ -11,6 +11,8 @@ import {
   PhoneBookContactTitle,
   PhoneBookContainer,
   PhoneBookTitle,
+  PhoneBookContactsContainer,
+  PhoneBookMainContainer,
 } from './PhoneBookStyled';
 import { BookUser, Phone } from 'lucide-react';
 import ContactForm from './ContactForm/ContactForm';
@@ -44,7 +46,7 @@ export const PhoneBook = () => {
     return () => clearInterval(interval);
   }, [lampActive]);
   return (
-    <div>
+    <PhoneBookMainContainer>
       <PhoneBookContainer>
         <PhoneBookTitle active={lampActive}>
           PhoneBook <Phone strokeWidth={1.5} />
@@ -55,13 +57,13 @@ export const PhoneBook = () => {
         />
       </PhoneBookContainer>
 
-      <PhoneBookContainer>
+      <PhoneBookContactsContainer>
         <PhoneBookContactTitle>
           Contacts <BookUser strokeWidth={1.5} />
         </PhoneBookContactTitle>
         <Filter setFilter={handleFilterChange} filter={filter} />
         <ContactList contacts={filteredData} filter={filter} />
-      </PhoneBookContainer>
-    </div>
+      </PhoneBookContactsContainer>
+    </PhoneBookMainContainer>
   );
 };

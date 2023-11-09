@@ -62,7 +62,7 @@ export function ContactListItem({ contact }) {
     <ListItemContainer>
       {contact.name}: {contact.number}
       <ButtonsContainer>
-        <DeleteButton onClick={openModal}>Open</DeleteButton>
+        <DeleteButton onClick={openModal}>Edit</DeleteButton>
         {isOpen ? (
           <Modal close={closeModal}>
             <form onSubmit={handleChangeContact} onKeyPress={handleKeyPress}>
